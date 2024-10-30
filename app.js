@@ -12,14 +12,19 @@ function doneTodo(e) {
 }
 
 addNewTodo.addEventListener("click", () => {
-    const clone = template.content.cloneNode("true");
-    const p = clone.querySelector("p");
-    const done = clone.querySelector("#done");
-    const deleteBtn = clone.querySelector("#delete");
-    deleteBtn.setAttribute("onclick", `deleteTodo(this)`);
-    done.setAttribute("onclick", `doneTodo(this)`);
-    p.textContent = textInput.value;
-    list.appendChild(clone);
-
-    textInput.value = "";
+    const value = textInput.value.trim();
+    value
+        ?
+        (() => {
+            const clone = template.content.cloneNode("true");
+            const p = clone.querySelector("p");
+            const done = clone.querySelector("#done");
+            const deleteBtn = clone.querySelector("#delete");
+            deleteBtn.setAttribute("onclick", `deleteTodo(this)`);
+            done.setAttribute("onclick", `doneTodo(this)`);
+            p.textContent = textInput.value;
+            list.appendChild(clone);
+            textInput.value = "";
+        })() :
+        alert("Hech nima yozlimadi");
 });
